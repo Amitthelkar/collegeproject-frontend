@@ -13,7 +13,7 @@ const Home = () => {
             Welcome To Government College Of Engineering
           </h1>
         </div>
-        <div className="flex w-3/5 space-x-3">
+        <div className="flex w-3/5 space-x-2">
           <Link
             to="/student-login"
             className="flex rounded-lg items-center bg-gray-100 p-8 space-x-4 w-1/2 hover:shadow-lg"

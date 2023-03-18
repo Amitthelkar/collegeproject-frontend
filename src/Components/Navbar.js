@@ -10,9 +10,8 @@ return (
             <span className="ml-3 text-xl">Add Project</span>
             </Link>
             <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-                <Link to="/login/admin" className="mr-5 hover:text-gray-900">Admin Login</Link>
-                <Link to="/login/student" className="mr-5 hover:text-gray-900">Student Login</Link>
-
+                <Link to="/login" className="mr-5 hover:text-gray-900">Login</Link>
+               
             </nav>
            
         </div>
