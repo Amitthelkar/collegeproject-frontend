@@ -11,8 +11,9 @@ import Navbar from "./Components/Navbar";
 import StudentLogin from "./Components/StudentLogin";
 import Login from "./Components/Login";
 import FacultyLogin from "./Components/FacultyLogin";
-import ProjectDashborad from "./Components/ProjectDashboard";
 import AddProject from "./Components/AddProject";
+import StudentDashborad from "./Components/StudentDashboard";
+import FacultyDashborad from "./Components/FacultyDashboard";
 
 function App() {
   return (
@@ -25,9 +26,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/login/student" element={<StudentLogin />} />
           <Route path="/login/faculty" element={<FacultyLogin />} />
-          <Route path="/projectdashboard" element={<ProjectDashborad />} />
+          <Route path="/studentdashborad" element={<StudentDashborad />} />
           <Route path="/addproject" element={<AddProject />} />
-         
+          <Route path="/facultydashboard" element={<FacultyDashborad />} />
+          
 
         </Routes>
       </Router>

@@ -1,8 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const FacultyLogin = () => {
     const [userData, setUserData] = useState({ username: "", password: "" });
+    const navigate =useNavigate();
+
+function submit(){
+
+
+    
+
+    navigate("/facultydashboard")
+
+}
+
     return (
         <section className="bg-gray-50">
             <div className="flex flex-col items-center px-6 mx-auto py-12 lg:py-24">
@@ -67,6 +78,7 @@ const FacultyLogin = () => {
 
                             <button
                                 type="submit"
+                                onClick={()=>submit()}
                                 className="w-full text-white bg-slate-800 hover:bg-slate-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                             >
                                 Sign in
