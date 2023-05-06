@@ -1,21 +1,66 @@
 
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const StudentLogin = () => {
-    const [userData, setUserData] = useState({ username: "", password: "" });
+    const [userData, setUserData] = useState({ user_id: "", password: "" });
 
-const navigate =useNavigate();
-    function submit(){
-        navigate("/studentdashborad");
-    }
+   
+    const navigate = useNavigate();
+    // function submit(){
+    //     navigate("/studentdashborad");
+    // }
+
+    useEffect(() => {
+        //no need to come here if already logged in
+        if (localStorage.getItem("token")) {
+            navigate("studentdashborad");
+        }
+    }, [navigate]);
+
+    const submit = () => {
+
+        var jsonData = JSON.stringify(userData);
+        console.log(jsonData);
+        axios
+            .post("http://127.0.0.1:8000/api/login/", jsonData, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then((response) => {
+
+                console.log(response.data);
+                if (response.data.token) {
+                    localStorage.setItem("token", response.data.token);
+                    console.log(response.data);
+                    console.log(localStorage.getItem("token"));
+                   
+                    toast.success("Welcome back!", {
+                        position: "top-center",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                  
+                    navigate("/studentdashborad");
+                }
+
+            });
+    };
     return (
         <section className="bg-gray-50">
             <div className="flex flex-col items-center px-6 mx-auto py-12 lg:py-24">
                 <div className="w-full bg-white rounded-lg shadow-xl md:mt-0 sm:max-w-md xl:p-0 ">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight w-full text-center tracking-tight text-gray-900 md:text-2xl ">
-                           Student Login
+                            Student Login
                         </h1>
                         <form
                             className="space-y-4 md:space-y-6"
@@ -27,22 +72,22 @@ const navigate =useNavigate();
                         >
                             <div>
                                 <label
-                                    htmlFor="email"
+
                                     className="block mb-2 text-sm font-medium text-gray-900 "
                                 >
                                     Username
                                 </label>
                                 <input
-                                    type="email"
-                                    name="email"
-                                    id="email"
+                                    type="text"
+                                    name="user_id"
+                                    id="user_id"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                                     placeholder="JhonDoe"
                                     required
-                                    value={userData.username}
+                                    value={userData.user_id}
                                     onChange={(e) => {
                                         setUserData((prevData) => {
-                                            return { ...prevData, username: e.target.value };
+                                            return { ...prevData, user_id: e.target.value };
                                         });
                                     }}
                                 />
@@ -73,7 +118,7 @@ const navigate =useNavigate();
 
                             <button
                                 type="submit"
-                                onClick={()=>submit()}
+                                onClick={() => submit()}
                                 className="w-full text-white bg-slate-800 hover:bg-slate-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                             >
                                 Sign in

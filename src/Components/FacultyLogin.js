@@ -5,6 +5,7 @@ const FacultyLogin = () => {
     const [userData, setUserData] = useState({ username: "", password: "" });
     const navigate =useNavigate();
 
+
 function submit(){
 
 

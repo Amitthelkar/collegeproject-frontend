@@ -14,6 +14,7 @@ import FacultyLogin from "./Components/FacultyLogin";
 import AddProject from "./Components/AddProject";
 import StudentDashborad from "./Components/StudentDashboard";
 import FacultyDashborad from "./Components/FacultyDashboard";
+import NewIdea from "./Components/NewIdea";
 
 function App() {
   return (
@@ -29,8 +30,8 @@ function App() {
           <Route path="/studentdashborad" element={<StudentDashborad />} />
           <Route path="/addproject" element={<AddProject />} />
           <Route path="/facultydashboard" element={<FacultyDashborad />} />
+          <Route path="/newidea" element={<NewIdea />} />
           
-
         </Routes>
       </Router>
     </Fragment>
