@@ -6,8 +6,7 @@ import { toast } from "react-toastify";
 const Navbar = () => {
     const navigate = useNavigate();
     const [userToken, setUserToken] = useState({ token: "" });
-  
-    
+
     return (
         <div>
             <header className="text-gray-600 body-font shadow-lg">
@@ -32,45 +31,34 @@ const Navbar = () => {
 
                             </nav>
                         )}
-                    
+
                     {(localStorage.getItem("token")) && (
                         <button
                             type="button"
-                            onClick={() => {
-                                setUserToken({token: localStorage.getItem("token")})
-                                axios
-                                    .post("http://127.0.0.1:8000/api/logout/", JSON.stringify(userToken), {
+                            onClick={async () => {
+                                setUserToken({ token: localStorage.getItem("token") })
+                                console.log(JSON.stringify(userToken));
+                                await axios
+                                    .post("http://192.168.43.202:8000/api/logout/", JSON.stringify(userToken), {
                                         headers: {
                                             "Content-Type": "application/json",
                                         },
                                     })
                                     .then((response) => {
-                                        if (response.data.status) {
-                                            console.log(response.data.status)
-                                            toast.success(response.data.messsageIfAny, {
-                                                position: "top-center",
-                                                autoClose: 2000,
-                                                hideProgressBar: false,
-                                                closeOnClick: true,
-                                                pauseOnHover: true,
-                                                draggable: true,
-                                                progress: undefined,
-                                                theme: "light",
-                                            });
-                                            localStorage.removeItem("token");
-                                            navigate("/login/student");
-                                        } else {
-                                            toast.error(response.data.messsageIfAny, {
-                                                position: "top-center",
-                                                autoClose: 2000,
-                                                hideProgressBar: false,
-                                                closeOnClick: true,
-                                                pauseOnHover: true,
-                                                draggable: true,
-                                                progress: undefined,
-                                                theme: "light",
-                                            });
-                                        }
+                                        console.log(response.data.status)
+                                        toast.success(response.data.messsageIfAny, {
+                                            position: "top-center",
+                                            autoClose: 2000,
+                                            hideProgressBar: false,
+                                            closeOnClick: true,
+                                            pauseOnHover: true,
+                                            draggable: true,
+                                            progress: undefined,
+                                            theme: "light",
+                                        });
+                                        localStorage.removeItem("token");
+                                        navigate("/login/student");
+
                                     })
                                     .catch((error) => {
                                         console.log(error);

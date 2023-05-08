@@ -7,8 +7,7 @@ export default function StudentDashborad() {
     const [userData, setUserData] = useState([
         { projectname: "amitugique", requiredchange: "jwdbqehdbhuq" },
         { projectname: "amit", requiredchange: "jwdbqeh" }
-        //set data for approved project from api
-        
+   
     ]
     );
 

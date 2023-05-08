@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const StudentLogin = () => {
     const [userData, setUserData] = useState({ user_id: "", password: "" });
-
+ 
    
     const navigate = useNavigate();
     // function submit(){
@@ -20,12 +20,12 @@ const StudentLogin = () => {
         }
     }, [navigate]);
 
-    const submit = () => {
+    const submit = async () => {
 
         var jsonData = JSON.stringify(userData);
         console.log(jsonData);
-        axios
-            .post("http://127.0.0.1:8000/api/login/", jsonData, {
+        await axios
+            .post("http://192.168.43.202:8000/api/login/", jsonData, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -37,7 +37,6 @@ const StudentLogin = () => {
                     localStorage.setItem("token", response.data.token);
                     console.log(response.data);
                     console.log(localStorage.getItem("token"));
-                   
                     toast.success("Welcome back!", {
                         position: "top-center",
                         autoClose: 2000,
