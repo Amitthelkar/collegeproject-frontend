@@ -1,41 +1,45 @@
 
 import axios from "axios";
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const StudentLogin = () => {
-    const [userData, setUserData] = useState({ email: "", password: "" });
+const NewPassword = () => {
+    const [userData, setUserData] = useState({ user_id: "", password: "" });
+ 
    
-   const navigate = useNavigate();
+    const navigate = useNavigate();
+    // function submit(){
+    //     navigate("/studentdashborad");
+    // }
+
+    // useEffect(() => {
+    //     //no need to come here if already logged in
+    //     if (localStorage.getItem("token")) {
+    //         navigate("studentdashboard");
+    //     }
+    // }, [navigate]);
 
     const submit = async () => {
 
         var jsonData = JSON.stringify(userData);
         console.log(jsonData);
         await axios
-            .post("http://127.0.0.1:8000/api/auth/", jsonData, {
+            .post("http://127.0.0.1:8000/api/login/", jsonData, {
                 headers: {
                     "Content-Type": "application/json",
                 },
             })
-            .then(async (response) => {
-                localStorage.setItem('token',response.data.access);
-                await axios
-                    .get("http://127.0.0.1:8000/api/user/me/", { headers: { Authorization:  'Bearer '.concat(response.data.access) } })
-                    .then((res) => {  
-                        localStorage.setItem('userid',res.data.id);
-                      
-            
-                        if (res.data.role === "student") {
-                            navigate("/studentdashboard")
-                        }
-                        if (res.data.role === "faculty") {
-                            navigate("/facultydashboard")
-                        }
+            .then((response) => {
 
-                    });
+                console.log(response.data);
+                if (response.data.token) {
+                   console.log(response.data);
+                   
+                    navigate("/studentdashboard");
+                }
+
             });
-
     };
     return (
         <section className="bg-gray-50">
@@ -62,15 +66,15 @@ const StudentLogin = () => {
                                 </label>
                                 <input
                                     type="text"
-                                    name="email"
-                                    id="email"
+                                    name="user_id"
+                                    id="user_id"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                                     placeholder="JhonDoe"
                                     required
-                                    value={userData.email}
+                                    value={userData.user_id}
                                     onChange={(e) => {
                                         setUserData((prevData) => {
-                                            return { ...prevData, email: e.target.value };
+                                            return { ...prevData, user_id: e.target.value };
                                         });
                                     }}
                                 />
@@ -114,4 +118,4 @@ const StudentLogin = () => {
     );
 };
 
-export default StudentLogin;
+export default NewPassword;

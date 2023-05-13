@@ -1,10 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { Await } from "react-router-dom";
-import useFetch from "use-http";
 
-
-export default function FacultyDashborad() {
+export default function FacultyDashboard() {
 
     // const options = {} // these options accept all native `fetch` options
     // // the last argument below [] means it will fire onMount (GET by default)
@@ -82,7 +78,7 @@ export default function FacultyDashborad() {
                                                         <td className="px-4 py-2 border-r-2 border-gray-300">
                                                             {JSON.stringify(todo.title)}
                                                         </td>
-                                                        <td className="border px-4 py-2"><button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                                                        <td className="border px-4 py-2"><button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
                                                             view
                                                         </button></td>
                                                         <td className="border px-4 py-2">
@@ -120,7 +116,7 @@ export default function FacultyDashborad() {
                                                         <td className="px-4 py-2 border-r-2 border-gray-300">
                                                             {JSON.stringify(item.title)}
                                                         </td>
-                                                        <td className="border px-4 py-2"><button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                                                        <td className="border px-4 py-2"><button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
                                                             view
                                                         </button></td>
                                                         <td className="border px-4 py-2">
